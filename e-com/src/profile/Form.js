@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { TextField, Button, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+// import { useSelector , useDispatch} from 'react-redux'
 
 
 
@@ -12,16 +14,40 @@ export const Form = () => {
         password: "",
         isProfileLogin: false,
     })
+    const navigate = useNavigate();
     const onSubmitForm = async (e) => {
         e.preventDefault()
-
-        const res = await axios.post('http://localhost:5000/register', {
-    isLogin})
-
-        setIsLogin({
-            ...isLogin,
-            isProfileLogin: true,
-        })
+        if(isLogin.isProfileLogin){
+            setIsLogin({
+                ...isLogin,
+                isProfileLogin: true,
+            })
+            const res = await axios.post('http://localhost:5000/register', {
+                isLogin
+            })
+            // useDisponSubmission
+            setIsLogin({
+                name: "",
+                email: "",
+                password: "",
+                isProfileLogin: true,
+            })
+            navigate('/')
+        }else{
+            setIsLogin({
+                ...isLogin,
+                isProfileLogin: true,
+            })
+            const res = await axios.post('http://localhost:5000/login', {
+                isLogin
+            })
+            setIsLogin({
+                name: "",
+                email: "",
+                password: "",
+                isProfileLogin: true,
+            })
+        }
     }
     const createNew = () => {
         setIsLogin({
@@ -74,8 +100,7 @@ export const Form = () => {
                     }}
                 />
                 <Button type="submit" variant="contained" color="primary">
-                    {/* <Link to={`/`}>{!isLogin.isProfileLogin ? "Login" : "Singup"}</Link> */}
-                    Singup
+                    {!isLogin.isProfileLogin ? "Login" : "Singup"}
                 </Button>
                 <Link className='createNew' onClick={createNew}>{isLogin.isProfileLogin ? "Alreay Have" : "create New"}</Link>
             </form>

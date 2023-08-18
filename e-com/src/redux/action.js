@@ -1,4 +1,6 @@
-const onFormSubmit = 'onFormSubmit';
-export const formSubmit = () => ({
-  type: onFormSubmit,
-});
+export const onSubmission = (user) => {
+  return{
+      type: 'onSubmission',
+      user: {user}
+  }
+}

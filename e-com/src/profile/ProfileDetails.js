@@ -1,9 +1,14 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material';
+// import { useSelector , useDispatch} from 'react-redux'
 
 
 export const ProfileDetails = () => {
+  useEffect(() => {
+    
+  }, [])
+  
   return (
     <div className='userProfileContainer'>
     <div className='profileImg'>
@@ -20,7 +25,7 @@ export const ProfileDetails = () => {
     </div>
     </div>
     <Button variant="contained" color="primary">
-    <Link to="/">Logout</Link>
+    <Link to="/Form">Logout</Link>
     </Button>
     
     </div>
