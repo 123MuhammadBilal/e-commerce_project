@@ -13,9 +13,15 @@ export const Navigation = () => {
                 </ul>
             </div>
             <div>
-                <div className='currentUser'>
+            <div>
+                <ul>
+                    <li><Link className="homebutton" to={`/login`}>{"Login"}</Link></li>
+                    <div className='currentUser'>
                     <span><Link to={`/profile`}><img src="https://cdn-icons-png.flaticon.com/128/5087/5087579.png" alt="Icon" /></Link></span>
                 </div>
+                </ul>
+                
+            </div>
             </div>
         </div>
     )

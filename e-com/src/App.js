@@ -2,7 +2,7 @@ import './css/style.css';
 import { Navigation } from './common/Navigation';
 import { Footer } from './common/Footer';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { Login } from './components/Login';
+import { User } from './profile/User';
 const Layout = () => {
   return (
     <>
@@ -35,8 +35,12 @@ function App() {
           element: "<about />",
         },
         {
+          path: "login",
+          element: <User/>,
+        },
+        {
           path: "profile",
-          element: <Login />,
+          element: "<Profile/>",
         },
         {
           path: "*",

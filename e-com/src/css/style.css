@@ -1,6 +1,19 @@
 h1,h2,h3,h4,li,ul,a{
     margin: 0;
     padding: 0;
+    
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+.createNew{
+  text-align: center;
+  color: #66c6ef;
+}
+body{
+  background-color: whitesmoke;
+  color: #66c6ef;
 }
 .navigationContainer{
     display: flex;
@@ -15,6 +28,7 @@ h1,h2,h3,h4,li,ul,a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 10px;
 }
 .currentUser img{
     width: 100%;
@@ -74,4 +88,21 @@ ul {
     font-weight: bold;
     border-radius: 50%;
     margin-left: -95px;
+  }
+  .root{
+    display: flex;
+    justify-content: center;
+  }
+  .paper {
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
