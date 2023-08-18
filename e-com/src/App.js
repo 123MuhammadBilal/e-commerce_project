@@ -2,7 +2,8 @@ import './css/style.css';
 import { Navigation } from './common/Navigation';
 import { Footer } from './common/Footer';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { User } from './profile/User';
+import { Form } from './profile/Form';
+import { ProfileDetails } from './profile/ProfileDetails';
 const Layout = () => {
   return (
     <>
@@ -36,11 +37,15 @@ function App() {
         },
         {
           path: "login",
-          element: <User/>,
+          element: <Form/>,
         },
         {
           path: "profile",
-          element: "<Profile/>",
+          element: <ProfileDetails/>,
+        },
+        {
+          path: "Cart",
+          element: "<Cart/>",
         },
         {
           path: "*",

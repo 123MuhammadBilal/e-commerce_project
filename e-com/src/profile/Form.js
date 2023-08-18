@@ -1,45 +1,63 @@
 import React, { useState } from 'react'
 import { TextField, Button, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 
-export const User = () => {
+
+export const Form = () => {
     const [isLogin, setIsLogin] = useState({
+        name: "",
         email: "",
         password: "",
-        profile: false
+        isProfileLogin: false,
     })
-    const handleForm = (e) => {
+    const onSubmitForm = async (e) => {
         e.preventDefault()
+
+        const res = await axios.post('http://localhost:5000/register', {
+    isLogin})
+
         setIsLogin({
             ...isLogin,
-            profile: true,
+            isProfileLogin: true,
         })
     }
     const createNew = () => {
         setIsLogin({
             ...isLogin,
-            profile: !isLogin.profile,
+            isProfileLogin: !isLogin.isProfileLogin,
         })
     }
     return (
         <div className="paper">
             <Typography variant="h5" gutterBottom>
-                {!isLogin.profile ? "Login" : "Singup"}
+                {!isLogin.isProfileLogin ? "Login" : "Singup"}
             </Typography>
             <form className="form"
-                onSubmit={handleForm}
+                onSubmit={onSubmitForm}
             >
+                <TextField
+                    label="Name"
+                    type="name"
+                    variant="outlined"
+                    value={isLogin.name}
+                    onChange={(e) => {
+                        setIsLogin({
+                            ...isLogin,
+                            name: e.target.value,
+                        })
+                    }}
+                />
                 <TextField
                     label="Email"
                     type="email"
                     variant="outlined"
                     value={isLogin.email}
-                    onChange={(e) =>{
-                        const value = e.target.value;
+                    onChange={(e) => {
                         setIsLogin({
                             ...isLogin,
-                            email: {value},
+                            email: e.target.value,
                         })
                     }}
                 />
@@ -47,19 +65,19 @@ export const User = () => {
                     label="Password"
                     type="password"
                     variant="outlined"
-                    value={isLogin.email}
-                    onChange={(e) =>{
-                        const value = e.target.value;
+                    value={isLogin.password}
+                    onChange={(e) => {
                         setIsLogin({
                             ...isLogin,
-                            password: {value},
+                            password: e.target.value,
                         })
                     }}
                 />
                 <Button type="submit" variant="contained" color="primary">
-                    <Link to={`/`}>{!isLogin.profile ? "Login" : "Singup"}</Link>
+                    {/* <Link to={`/`}>{!isLogin.isProfileLogin ? "Login" : "Singup"}</Link> */}
+                    Singup
                 </Button>
-                <Link className='createNew' onClick={createNew}>{isLogin.profile ? "Alreay Have" : "create New"}</Link>
+                <Link className='createNew' onClick={createNew}>{isLogin.isProfileLogin ? "Alreay Have" : "create New"}</Link>
             </form>
         </div>
     )
