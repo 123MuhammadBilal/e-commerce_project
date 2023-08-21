@@ -19,17 +19,23 @@ app.post("/register", async (req, res) => {
     const user = new User(req.body.isLogin);
     const result = await user.save();
     res.send(result);
-    console.log("result", result)
 })
 
 app.post("/login", async (req, res) => {
-    if (req.body.password && req.body.email) {
-        let user = await User.fineOne(req.body).select("-password");
-        if (user) {
-            res.send(user)
-        } else {
-            res.send({ result: "No User Found" })
-        }
+    console.log("Request**", req.body);
+    // const {email, password} =  req.body.isLogin
+    if (req.body.isLogin.password && req.body.isLogin.email) {
+        console.log("req.body__",req.body);
+        
+        // let loggedInUser = await User.fineOne(req.body).select("-password");
+
+        // console.log("loggedInUser",loggedInUser)
+        // if (user) {
+        //     console.log("its user",user)
+        //     res.send(user)
+        // } else {
+        //     res.send({ result: "No User Found" })
+        // }
     } else {
         res.send({ result: "No User Found" })
     }
