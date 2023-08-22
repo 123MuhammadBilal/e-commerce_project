@@ -3,7 +3,8 @@ import { TextField, Button, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-// import { useSelector , useDispatch} from 'react-redux'
+import { useDispatch} from 'react-redux';
+import { addProfileBio } from '../Redux/Slicer';
 
 
 
@@ -14,7 +15,8 @@ export const Form = () => {
         password: "",
         isProfileLogin: false,
     })
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
     const onSubmitForm = async (e) => {
         e.preventDefault()
         if(isLogin.isProfileLogin){
@@ -40,7 +42,13 @@ export const Form = () => {
             })
             const res = await axios.post('http://localhost:5000/login', {
                 isLogin
-            })
+            }).then(function (response) {
+                dispatch(addProfileBio(response))
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
             // setIsLogin({
             //     name: "",
             //     email: "",
