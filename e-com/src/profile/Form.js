@@ -26,13 +26,13 @@ export const Form = () => {
                 isLogin
             })
             // useDisponSubmission
-            setIsLogin({
-                name: "",
-                email: "",
-                password: "",
-                isProfileLogin: true,
-            })
-            navigate('/')
+            // setIsLogin({
+            //     name: "",
+            //     email: "",
+            //     password: "",
+            //     isProfileLogin: true,
+            // })
+            // navigate('/')
         }else{
             setIsLogin({
                 ...isLogin,
@@ -41,12 +41,13 @@ export const Form = () => {
             const res = await axios.post('http://localhost:5000/login', {
                 isLogin
             })
-            setIsLogin({
-                name: "",
-                email: "",
-                password: "",
-                isProfileLogin: true,
-            })
+            // setIsLogin({
+            //     name: "",
+            //     email: "",
+            //     password: "",
+            //     isProfileLogin: true,
+            // })
+            // navigate('/profile')
         }
     }
     const createNew = () => {

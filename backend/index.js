@@ -1,48 +1,41 @@
 const express = require("express");
-const User = require("./db/User");
 const app = express();
-const cors = require('cors')
+const profile = require("./db/ProfileSchema")
+const cors = require('cors');
+const ProfileSchema = require("./db/ProfileSchema");
 app.use(cors());
 require("./db/config")
 app.use(express.json());
 
-
-
-
-
 app.get("/", (req, res) => {
-    res.send(`server is running `)
+    res.send(`server is running${name} `)
 })
 
 
 app.post("/register", async (req, res) => {
-    const user = new User(req.body.isLogin);
+    const user = new ProfileSchema(req.body.isLogin);
     const result = await user.save();
     res.send(result);
 })
 
 app.post("/login", async (req, res) => {
-    console.log("Request**", req.body);
-    // const {email, password} =  req.body.isLogin
-    if (req.body.isLogin.password && req.body.isLogin.email) {
-        console.log("req.body__",req.body);
-        
-        // let loggedInUser = await User.fineOne(req.body).select("-password");
-
-        // console.log("loggedInUser",loggedInUser)
-        // if (user) {
-        //     console.log("its user",user)
-        //     res.send(user)
-        // } else {
-        //     res.send({ result: "No User Found" })
-        // }
+    const {name , email, password } =  req.body.isLogin;
+    if (email && password) {
+        const request =  {
+            email: email,
+            password: password,
+        };
+        const profile = await ProfileSchema.find(request);
+        if(profile === ""){
+            res.send({ result: "No User Found" })
+            console.log("user not found");
+        }else{
+            res.send(profile);
+            console.log(profile);
+        }
     } else {
         res.send({ result: "No User Found" })
     }
-    // const user = new User(req.body.isLogin);
-    // const result = await user.save();
-    // res.send(result);
-    // console.log("result",result)
 })
 
 app.listen(5000, () => {

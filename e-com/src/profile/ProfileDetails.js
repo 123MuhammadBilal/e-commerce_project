@@ -1,12 +1,18 @@
 import React ,{useEffect}from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material';
+import axios from 'axios';
 // import { useSelector , useDispatch} from 'react-redux'
 
 
 export const ProfileDetails = () => {
   useEffect(() => {
-    
+    try {
+      const profileData = axios.get('http://localhost:5000/login');
+      console.log("profileData",profileData)
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
   
   return (
